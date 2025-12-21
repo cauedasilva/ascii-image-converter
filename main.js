@@ -260,7 +260,7 @@ function convertImageDataToASCII(imageData) {
         ascii += "\n";
     }
 
-    return ascii.trimEnd();
+    return ascii.trim();
 }
 
 function addButtons() {

@@ -4,6 +4,12 @@ Conversor de imagens para  ASCII feito em JavaScript puro, executado no navegado
 
 O projeto utiliza a Canvas API para processamento de imagem e gera arte ASCII em tempo real a partir de imagens locais.
 
+## Demonstração ao Vivo
+
+Você pode visualizar a versão ao vivo e em produção do projeto aqui:
+
+[https://cauedasilva.github.io/site-portfolio](https://cauedasilva.github.io/ascii-image-converter/)
+
 ## Funcionalidades
 
 Upload de imagens locais (PNG, JPEG, WebP, SVG)

@@ -8,7 +8,7 @@ O projeto utiliza a Canvas API para processamento de imagem e gera arte ASCII em
 
 Você pode visualizar a versão ao vivo e em produção do projeto aqui:
 
-[https://cauedasilva.github.io/site-portfolio](https://cauedasilva.github.io/ascii-image-converter/)
+https://cauedasilva.github.io/ascii-image-converter/
 
 ## Funcionalidades
 

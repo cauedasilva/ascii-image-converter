@@ -37,8 +37,8 @@ imageInput.addEventListener('change', function (event) {
 
             img.onload = () => {
                 originalImage = img;
-                drawCanvasPreview(img, true);
-                render();
+                drawOriginalImageToPreview(img, true);
+                renderASCII();
             };
 
             imageName.textContent = fileName;
@@ -120,7 +120,7 @@ function isSVG(file) {
     });
 }
 
-function drawCanvasPreview(img, cache = false) {
+function drawOriginalImageToPreview(img, cache = false) {
     const canvas = document.getElementById("image-preview");
     const ctx = canvas.getContext("2d");
 
@@ -135,27 +135,27 @@ function drawCanvasPreview(img, cache = false) {
     }
 }
 
-function render() {
+function renderASCII() {
     if (!originalImage || rafId) return;
 
     const canvasPreview = document.getElementById("image-preview");
 
     rafId = requestAnimationFrame(() => {
         rafId = null;
-        drawCanvasPreview(originalImage, false);
+        drawOriginalImageToPreview(originalImage, false);
         applyFilters(
             canvasPreview,
             +sliderBrightness.value,
             +sliderColor.value
         );
 
-        const resizedCanvas = resizeCanvas(
+        const resizedCanvas = resizeCanvasForASCII(
             canvasPreview,
             +sliderCharacters.value
         );
 
         const imageData = imageToGrayscale(resizedCanvas);
-        asciiArt.textContent = convertToASCII(
+        asciiArt.textContent = convertImageDataToASCII(
             imageData,
             resizedCanvas.width
         ).replace(/^\n+/, "");
@@ -212,7 +212,7 @@ function imageToGrayscale(canvas) {
     return imageData;
 }
 
-function resizeCanvas(source, targetWidth) {
+function resizeCanvasForASCII(source, targetWidth) {
     const ctx = imageRenderedCanvas.getContext("2d");
 
     const srcW = source.width || source.naturalWidth;
@@ -241,7 +241,7 @@ function mapGrayToChar(gray) {
     return density[n - 1 - k];
 }
 
-function convertToASCII(imageData) {
+function convertImageDataToASCII(imageData) {
     const data = imageData.data;
     const imgW = imageData.width;
     const imgH = imageData.height;
@@ -292,17 +292,17 @@ const sliderColorValue = document.getElementById("slider-color-value");
 
 sliderCharacters.addEventListener('input', function (event) {
     sliderCharactersValue.textContent = event.target.value;
-    render();
+    renderASCII();
 });
 
 sliderBrightness.addEventListener('input', function (event) {
     sliderBrightnessValue.textContent = event.target.value;
-    render();
+    renderASCII();
 });
 
 sliderColor.addEventListener('input', function (event) {
     sliderColorValue.textContent = event.target.value;
-    render();
+    renderASCII();
 });
 
 const resetButton = document.getElementById("slider-reset-button");
@@ -314,7 +314,7 @@ resetButton.addEventListener('click', function (event) {
     sliderBrightnessValue.textContent = 100;
     sliderColor.value = 0;
     sliderColorValue.textContent = 0;
-    render();
+    renderASCII();
 })
 
 document.addEventListener('click', function (event) {

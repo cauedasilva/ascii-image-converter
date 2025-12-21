@@ -31,7 +31,7 @@ A imagem é redimensionada com compensação de aspecto para caracteres ASCII
 
 Os pixels em escala de cinza são convertidos em caracteres ASCII com base na intensidade
 
-O resultado final é exibido em um elemento "<pre>" e pode ser copiado ou exportado
+O resultado final é exibido em um elemento "pre" e pode ser copiado ou exportado
 
 ## Principais Funções
 

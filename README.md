@@ -1,6 +1,7 @@
 # ASCII Image Converter
 
 Conversor de imagens para  ASCII feito em JavaScript puro, executado no navegador.
+
 O projeto utiliza a Canvas API para processamento de imagem e gera arte ASCII em tempo real a partir de imagens locais.
 
 ## Funcionalidades

@@ -37,12 +37,13 @@ O resultado final é exibido em um elemento "pre" e pode ser copiado ou exportad
 
 ### drawOriginalImageToPreview(img, cache)
 
-Desenha a imagem original no canvas de preview
-Quando o parâmetro cache é verdadeiro, armazena os dados originais da imagem (ImageData) para permitir reaplicação de filtros sem perda de qualidade
+Desenha a imagem original no canvas de preview.
+
+Quando o parâmetro cache é verdadeiro, armazena os dados originais da imagem (ImageData) para permitir reaplicação de filtros sem perda de qualidade.
 
 ### renderASCII()
 
-Função central do pipeline de renderização e coordena todo o fluxo de processamento
+Função central do pipeline de renderização e coordena todo o fluxo de processamento.
 
 Redesenha a imagem original
 
@@ -58,13 +59,15 @@ Utiliza requestAnimationFrame para evitar renderizações desnecessárias
 
 ### applyFilters(canvas, brightness, invertColors)
 
-Aplica filtros de brilho e inversão de cores diretamente nos pixels do canvas usando ImageData
-Sempre parte da imagem original armazenada para evitar acúmulo de erros visuais
+Aplica filtros de brilho e inversão de cores diretamente nos pixels do canvas usando ImageData.
+
+Sempre parte da imagem original armazenada para evitar acúmulo de erros visuais.
 
 ### resizeCanvasForASCII(source, targetWidth)
 
-Redimensiona a imagem para a largura desejada em caracteres, mantendo o aspecto visual correto para arte ASCII
-Compensa a proporção dos caracteres (altura maior que largura)
+Redimensiona a imagem para a largura desejada em caracteres, mantendo o aspecto visual correto para arte ASCII.
+
+Compensa a proporção dos caracteres (altura maior que largura).
 
 ### imageToGrayscale(canvas)
 
@@ -80,15 +83,15 @@ Retorna o ImageData em tons de cinza
 
 ### mapGrayToChar(gray)
 
-Mapeia um valor de cinza (0–255) para um caractere ASCII com base em uma string de densidade, do mais claro ao mais escuro
+Mapeia um valor de cinza (0–255) para um caractere ASCII com base em uma string de densidade, do mais claro ao mais escuro.
 
 ### convertImageDataToASCII(imageData)
 
-Percorre os pixels da imagem em escala de cinza e gera a arte ASCII linha por linha, respeitando a largura e altura do canvas processado
+Percorre os pixels da imagem em escala de cinza e gera a arte ASCII linha por linha, respeitando a largura e altura do canvas processado.
 
 ### generateAndDownloadPNG()
 
-Renderiza o texto ASCII em um canvas oculto e exporta o resultado como uma imagem PNG, mantendo espaçamento e proporção corretos do texto monoespaçado
+Renderiza o texto ASCII em um canvas oculto e exporta o resultado como uma imagem PNG, mantendo espaçamento e proporção corretos do texto monoespaçado.
 
 ## Tecnologias Utilizadas
 

@@ -1,12 +1,15 @@
 let originalImage = null;
 let originalImageData = null;
 let rafId = null;
+let buttonRef = true;
 
 const imageInput = document.getElementById('image-input');
 const imageName = document.getElementById("image-rendered-name");
 const imageTypeText = document.getElementById("image-type");
 const asciiArt = document.getElementById("ascii-art");
 const imageRenderedCanvas = document.getElementById("image-rendered");
+const imageRenderedContainer = document.getElementById("image-rendered-container");
+const hiddenCanvas = document.getElementById("ascii-art-canvas");
 
 imageInput.addEventListener('change', function (event) {
     const file = event.target.files[0];
@@ -40,6 +43,7 @@ imageInput.addEventListener('change', function (event) {
 
             imageName.textContent = fileName;
             img.src = e.target.result;
+            addButtons();
 
         }
 
@@ -259,6 +263,26 @@ function convertToASCII(imageData) {
     return ascii.trimEnd();
 }
 
+function addButtons() {
+    if (buttonRef) {
+        const newDiv = document.createElement("div");
+        newDiv.classList.add("ascii-button-container");
+        const firstButton = document.createElement("button");
+        const secondButton = document.createElement("button");
+        firstButton.classList.add("button");
+        firstButton.textContent = "Copiar ASCII";
+        firstButton.id = "copy-ascii";
+        secondButton.classList.add("button");
+        secondButton.textContent = "Baixar ASCII em PNG";
+        secondButton.id = "download-ascii";
+        newDiv.appendChild(firstButton);
+        newDiv.appendChild(secondButton);
+        imageRenderedContainer.appendChild(newDiv);
+    }
+
+    buttonRef = false;
+}
+
 const sliderCharacters = document.getElementById("slider-characters");
 const sliderCharactersValue = document.getElementById("slider-characters-value");
 const sliderBrightness = document.getElementById("slider-brightness");
@@ -291,4 +315,57 @@ resetButton.addEventListener('click', function (event) {
     sliderColor.value = 0;
     sliderColorValue.textContent = 0;
     render();
+})
+
+document.addEventListener('click', function (event) {
+    if (event.target && event.target.id === "copy-ascii") {
+        navigator.clipboard.writeText(asciiArt.textContent).then(() => {
+            alert('Texto copiado para a área de transferência.');
+        }).catch(err => {
+            console.error('Não foi possível copiar: ', err);
+        });
+    }
+})
+
+function generateAndDownloadPNG() {
+    const text = asciiArt.textContent;
+    if (!text.trim()) return;
+
+    const lines = text.split("\n");
+    const fontSize = 10;
+    const lineHeight = fontSize * 0.75;
+    const font = `${fontSize}px monospace`;
+    const ctx = hiddenCanvas.getContext("2d");
+    ctx.font = font;
+
+    const maxWidth = Math.max(
+        ...lines.map(line => ctx.measureText(line).width)
+    );
+
+    hiddenCanvas.width = Math.ceil(maxWidth);
+    hiddenCanvas.height = Math.ceil(lines.length * lineHeight);
+
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, hiddenCanvas.width, hiddenCanvas.height);
+
+    ctx.fillStyle = "black";
+    ctx.font = font;
+    ctx.textBaseline = "top";
+
+    lines.forEach((line, i) => {
+        ctx.fillText(line, 0, i * lineHeight);
+    });
+
+    const dataURL = hiddenCanvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = "ascii.png";
+    link.href = dataURL;
+    link.click();
+}
+
+
+document.addEventListener('click', function (event) {
+    if (event.target && event.target.id === "download-ascii") {
+        generateAndDownloadPNG();
+    }
 })

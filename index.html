@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="shortcut icon" href="/favicon.webp" type="image/x-icon">
+    <title>ASCII Conversor</title>
+</head>
+
+<body>
+    <header>
+        <div class="nav">
+            <div>
+                Conversor de imagem ASCII
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="image-upload-container">
+            <div class="sliders-image-container">
+                <div class="image-preview-container">
+                    <label class="image-type" id="image-type"></label>
+                    <label id="image-rendered-name" class="image-rendered-name"></label>
+                    <canvas class="image-preview" id="image-preview"></canvas>
+                </div>
+                <div class="input-container">
+                    <label for="image-input" class="image-input button">
+                        <input type="file" accept="image/*" id="image-input" alt="Image Uploader">
+                        <span>Escolha a imagem</span>
+                    </label>
+                </div>
+            </div>
+            <div class="sliders-container">
+                <div class="sliders-wrapper">
+                    <label>Densidade de caracteres</label>
+                    <div class="input-range-wrapper">
+                        <input type="range" id="slider-characters" min="20" max="500" value="100" class="range-slider">
+                        <span id="slider-characters-value">100</span>
+                    </div>
+                    <label>Brilho</label>
+                    <div class="input-range-wrapper">
+                        <input type="range" id="slider-brightness" min="0" max="200" value="100" class="range-slider">
+                        <span id="slider-brightness-value">100</span>%
+                    </div>
+                    <label>Inverter cores</label>
+                    <div class="input-range-wrapper">
+                        <input type="range" id="slider-color" min="0" max="100" value="0" class="range-slider">
+                        <span id="slider-color-value">0</span>%
+                    </div>
+                </div>
+                <div class="reset-button-wrapper">
+                    <button class="reset-button button" id="slider-reset-button">Reiniciar</button>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="image-rendered-container">
+                <div class="canvas-container">
+                    <canvas id="image-rendered" class="image-rendered"></canvas>
+                    <div class="ascii-art-container">
+                        <pre id="ascii-art" class="ascii-art"></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <section>
+            <div class="footer">
+                <div>
+                    &#169;2025
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </section>
+    </footer>
+
+    <script src="/main.js" type="module"></script>
+</body>
+
+</html>

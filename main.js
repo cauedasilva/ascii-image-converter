@@ -8,7 +8,7 @@ const imageName = document.getElementById("image-rendered-name");
 const imageTypeText = document.getElementById("image-type");
 const asciiArt = document.getElementById("ascii-art");
 const imageRenderedCanvas = document.getElementById("image-rendered");
-const imageRenderedContainer = document.getElementById("image-rendered-container");
+const asciiArtContainer = document.getElementById("ascii-art-container");
 const hiddenCanvas = document.getElementById("ascii-art-canvas");
 
 imageInput.addEventListener('change', function (event) {
@@ -260,7 +260,7 @@ function convertImageDataToASCII(imageData) {
         ascii += "\n";
     }
 
-    return ascii.trim();
+    return ascii;
 }
 
 function addButtons() {
@@ -277,7 +277,7 @@ function addButtons() {
         secondButton.id = "download-ascii";
         newDiv.appendChild(firstButton);
         newDiv.appendChild(secondButton);
-        imageRenderedContainer.appendChild(newDiv);
+        asciiArtContainer.appendChild(newDiv);
     }
 
     buttonRef = false;

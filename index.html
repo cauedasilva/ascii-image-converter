@@ -7,8 +7,7 @@
     <meta name="description" content="Conversor de imagens para arte ASCII feito em JavaScript puro usando Canvas.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./index.css">
     <link rel="shortcut icon" href="./favicon.webp" type="image/webp">
     <title>ASCII Conversor</title>
@@ -17,86 +16,77 @@
 <body>
     <header>
         <div class="nav">
-            <div>
-                Conversor de imagem ASCII
-            </div>
-            <div>
-                
-            </div>
+            <div>Conversor de Imagem ASCII</div>
+            <div></div>
         </div>
     </header>
+
     <main>
-        <section class="image-upload-container">
-            <div class="sliders-image-container">
+        <aside class="sidebar">
+            <div class="image-preview-wrapper">
                 <div class="image-preview-container">
-                    <label class="image-type" id="image-type"></label>
-                    <label id="image-rendered-name" class="image-rendered-name"></label>
                     <canvas class="image-preview" id="image-preview"></canvas>
                 </div>
-                <div class="input-container">
-                    <label for="image-input" class="image-input button">
-                        <input type="file" accept="image/*" id="image-input" alt="Image Uploader">
-                        <span>Escolha a imagem</span>
+                <div class="upload-container">
+                    <label for="image-input" class="upload-button">
+                        <input type="file" accept="image/*" id="image-input">
+                        <span>Escolher Imagem</span>
                     </label>
+                    <div class="image-name-container">
+                        <label class="image-type" id="image-type"></label>
+                        <label id="image-rendered-name" class="image-rendered-name"></label>
+                    </div>
                 </div>
             </div>
-            <div class="sliders-container">
-                <div class="sliders-wrapper">
-                    <label>Densidade de caracteres</label>
+            <hr>
+            <div>
+                <div class="slider-group">
+                    <label class="slider-label">Densidade de Caracteres</label>
                     <div class="input-range-wrapper">
                         <input type="range" id="slider-characters" min="20" max="500" value="100" class="range-slider">
-                        <div class="number-slider-container">
-                            <span id="slider-characters-value" style="padding-right: 12px;">100</span>
-                        </div>
+                        <span id="slider-characters-value" class="slider-value">100</span>
                     </div>
-                    <label>Brilho</label>
+                </div>
+
+                <div class="slider-group">
+                    <label class="slider-label">Brilho</label>
                     <div class="input-range-wrapper">
                         <input type="range" id="slider-brightness" min="0" max="200" value="100" class="range-slider">
-                        <div class="number-slider-container">
-                            <span id="slider-brightness-value">100</span>
-                            <span>%</span>
-                        </div>
+                        <span id="slider-brightness-value" class="slider-value">100%</span>
                     </div>
-                    <label>Inverter cores</label>
+                </div>
+
+                <div class="slider-group">
+                    <label class="slider-label">Inverter Cores</label>
                     <div class="input-range-wrapper">
                         <input type="range" id="slider-color" min="0" max="100" value="0" class="range-slider">
-                        <div class="number-slider-container">
-                            <span id="slider-color-value">0</span>
-                            <span>%</span>
-                        </div>
+                        <span id="slider-color-value" class="slider-value">0%</span>
                     </div>
                 </div>
-                <div class="reset-button-wrapper">
-                    <button class="reset-button button" id="slider-reset-button">Reiniciar filtros</button>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div class="image-rendered-container" id="image-rendered-container">
-                <div class="canvas-container">
-                    <div class="image-rendered-wrapper">
-                        <canvas id="image-rendered" class="image-rendered"></canvas>
-                    </div>
-                    <div class="ascii-art-container">
-                        <pre id="ascii-art" class="ascii-art"></pre>
-                        <canvas id="ascii-art-canvas" class="ascii-art-canvas"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <section>
-            <div class="footer">
-                <div>
-                    &#169;2025
-                </div>
-                <div>
 
+                <button class="button" id="slider-reset-button">Reiniciar Filtros</button>
+            </div>
+
+            <div class="footer"> &#169;2025</div>
+        </aside>
+
+        <div class="content-area">
+            <div class="preview-section">
+                <div class="section-title">Imagem processada para grayscale</div>
+                <div class="preview-card" id="image-rendered-container">
+                    <canvas id="image-rendered" class="image-rendered"></canvas>
                 </div>
             </div>
-        </section>
-    </footer>
+
+            <div class="preview-section" id="ascii-art-container">
+                <div class="section-title">Arte ASCII</div>
+                <div class="ascii-art-container">
+                    <pre id="ascii-art" class="ascii-art"></pre>
+                </div>
+                <canvas id="ascii-art-canvas" class="ascii-art-canvas"></canvas>
+            </div>
+        </div>
+    </main>
 
     <script src="./main.js" type="module" defer></script>
 </body>

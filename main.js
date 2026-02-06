@@ -372,4 +372,4 @@ document.addEventListener('click', function (event) {
 
 const footerYear = document.getElementById("footer-year");
 const currentYear = new Date().getFullYear();
-footerYear.textContent = "&#169; " + currentYear;
+footerYear.textContent = `©${currentYear}`;

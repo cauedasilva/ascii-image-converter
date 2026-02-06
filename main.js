@@ -369,3 +369,7 @@ document.addEventListener('click', function (event) {
         generateAndDownloadPNG();
     }
 })
+
+const footerYear = document.getElementById("footer-year");
+const currentYear = new Date().getFullYear();
+footerYear.textContent = currentYear;
